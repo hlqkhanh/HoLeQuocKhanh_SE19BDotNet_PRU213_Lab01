@@ -17,11 +17,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float asteroidMaxSpeed = 8f;
     [SerializeField] private float timeToMaxDifficulty = 60f;
 
+    [Header("--- BOSS ---")]
+    [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private int bossScoreRequired = 100;
+    [SerializeField] private int bossDefeatScore = 100;
+    [SerializeField] private Vector3 bossSpawnPosition = new Vector3(0f, 3f, 0f);
+    [SerializeField] private Sprite bossSprite;
+    [SerializeField] private Sprite fireballSprite;
+
     private int score = 30;
+    private bool bossSpawned;
     public int Score => score;
 
     void Start()
     {
+        LoadBossSprites();
         UpdateScoreUI();
         StartCoroutine(SpawnAsteroidRoutine());
         StartCoroutine(SpawnStarRoutine());
@@ -31,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         score += points;
         UpdateScoreUI();
+        TrySpawnBoss();
     }
 
     public void DeductScore(int points)
@@ -60,6 +71,63 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = "Score: " + score;
         }
+    }
+
+    private void LoadBossSprites()
+    {
+        if (bossSprite == null)
+        {
+            bossSprite = LoadSpriteResource("boss");
+        }
+
+        if (fireballSprite == null)
+        {
+            fireballSprite = LoadSpriteResource("fireball");
+        }
+    }
+
+    private Sprite LoadSpriteResource(string resourceName)
+    {
+        Sprite sprite = Resources.Load<Sprite>(resourceName);
+        if (sprite != null)
+        {
+            return sprite;
+        }
+
+        Texture2D texture = Resources.Load<Texture2D>(resourceName);
+        if (texture == null)
+        {
+            return null;
+        }
+
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
+    }
+
+    private void TrySpawnBoss()
+    {
+        if (bossSpawned || score < bossScoreRequired) return;
+
+        bossSpawned = true;
+
+        GameObject bossObject = bossPrefab != null
+            ? Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity)
+            : new GameObject("Boss");
+
+        bossObject.transform.position = bossSpawnPosition;
+
+        Boss boss = bossObject.GetComponent<Boss>();
+        if (boss == null)
+        {
+            boss = bossObject.AddComponent<Boss>();
+        }
+
+        Sprite spriteOverride = bossPrefab == null ? bossSprite : null;
+        boss.Initialize(this, spriteOverride, fireballSprite);
+    }
+
+    public void OnBossDefeated()
+    {
+        AddScore(bossDefeatScore);
     }
 
     IEnumerator SpawnAsteroidRoutine()

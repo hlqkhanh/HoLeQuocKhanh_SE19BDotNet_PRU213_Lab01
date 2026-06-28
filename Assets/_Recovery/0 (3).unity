@@ -1428,7 +1428,6 @@ MonoBehaviour:
   asteroidStartSpeed: 3
   asteroidMaxSpeed: 8
   timeToMaxDifficulty: 60
-  bossPrefab: {fileID: 953228091440391867, guid: 09ec04e4f28fa644e8b7a12338b43431, type: 3}
   bossScoreRequired: 100
   bossDefeatScore: 100
   bossSpawnPosition: {x: 0, y: 3, z: 0}
