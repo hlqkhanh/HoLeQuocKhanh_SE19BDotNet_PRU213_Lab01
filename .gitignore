@@ -1,0 +1,47 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+
+# Unity crash and profiler files
+sysinfo.txt
+*.stackdump
+
+# Visual Studio / Rider / VS Code generated files
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.slnx
+*.unityproj
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs and packages
+*.apk
+*.aab
+*.unitypackage
+
+# Keep Unity asset metadata tracked
+!*.meta
+
+# Ignore accidental rich-text gitignore files
+*.gitignore.rtf
+Video_demo.mov
