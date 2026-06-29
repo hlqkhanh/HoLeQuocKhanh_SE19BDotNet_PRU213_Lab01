@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +8,10 @@ public class GameManager : MonoBehaviour
     public GameObject asteroidPrefab;
     public GameObject starPrefab;
     public TextMeshProUGUI scoreText;
+
+    [Header("--- LIVES ---")]
+    [SerializeField] private int maxLives = 3;
+    [SerializeField] private HeartUI heartUI;
 
     [Header("--- ASTEROID DIFFICULTY ---")]
     [SerializeField] private float asteroidStartInterval = 2f;
@@ -26,13 +29,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite fireballSprite;
 
     private int score = 30;
+    private int currentLives;
     private bool bossSpawned;
     public int Score => score;
 
     void Start()
     {
         LoadBossSprites();
+        FindHeartUIIfNeeded();
+        currentLives = maxLives;
         UpdateScoreUI();
+        UpdateHeartUI();
         StartCoroutine(SpawnAsteroidRoutine());
         StartCoroutine(SpawnStarRoutine());
     }
@@ -46,23 +53,37 @@ public class GameManager : MonoBehaviour
 
     public void DeductScore(int points)
     {
-        score -= points;
+        LoseLife();
+    }
+
+    public void LoseLife()
+    {
+        if (currentLives <= 0) return;
+
+        currentLives--;
+        UpdateHeartUI();
+        TriggerCameraShake();
+
+        if (currentLives <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        score = Mathf.Max(0, score);
         UpdateScoreUI();
 
-        if (score <= 0)
+        AudioSource cameraAudio = Camera.main.GetComponent<AudioSource>();
+        if (cameraAudio != null)
         {
-            score = 0;
-            
-            AudioSource cameraAudio = Camera.main.GetComponent<AudioSource>();
-            if (cameraAudio != null)
-            {
-                cameraAudio.Stop();
-            }
-
-            PlayerPrefs.SetInt("FinalScore", score);
-            PlayerPrefs.Save();
-            SceneManager.LoadScene("EndGame");
+            cameraAudio.Stop();
         }
+
+        PlayerPrefs.SetInt("FinalScore", score);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("EndGame");
     }
 
     private void UpdateScoreUI()
@@ -83,6 +104,38 @@ public class GameManager : MonoBehaviour
         if (fireballSprite == null)
         {
             fireballSprite = LoadSpriteResource("fireball");
+        }
+    }
+
+    private void UpdateHeartUI()
+    {
+        if (heartUI != null)
+        {
+            heartUI.SetLives(currentLives);
+        }
+    }
+
+    private void FindHeartUIIfNeeded()
+    {
+        if (heartUI == null)
+        {
+            heartUI = FindAnyObjectByType<HeartUI>();
+        }
+
+        if (heartUI == null)
+        {
+            Debug.LogWarning("HeartUI is not assigned or present in the scene. Lives UI will not be displayed.");
+        }
+    }
+
+    private void TriggerCameraShake()
+    {
+        if (Camera.main == null) return;
+
+        CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+        if (cameraShake != null)
+        {
+            cameraShake.Shake(0.2f, 0.5f);
         }
     }
 

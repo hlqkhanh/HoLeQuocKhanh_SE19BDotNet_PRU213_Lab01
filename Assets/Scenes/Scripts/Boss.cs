@@ -8,7 +8,6 @@ public class Boss : MonoBehaviour
     [Header("--- ATTACK ---")]
     [SerializeField] private float fireRate = 1.2f;
     [SerializeField] private float fireballSpeed = 5f;
-    [SerializeField] private int fireballDamage = 20;
 
     [Header("--- MOVEMENT ---")]
     [SerializeField] private float moveRange = 3f;
@@ -127,7 +126,7 @@ public class Boss : MonoBehaviour
             direction = (player.position - fireball.transform.position).normalized;
         }
 
-        fireballScript.Initialize(direction, fireballSpeed, fireballDamage);
+        fireballScript.Initialize(direction, fireballSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -43,10 +43,10 @@ public class Asteroid : MonoBehaviour
 
             TriggerCameraShake();
 
-            GameManager gameManager = GameObject.FindFirstObjectByType<GameManager>();
+            GameManager gameManager = GameObject.FindAnyObjectByType<GameManager>();
             if (gameManager != null)
             {
-                gameManager.DeductScore(50);
+                gameManager.LoseLife();
             }
 
             Destroy(gameObject);
