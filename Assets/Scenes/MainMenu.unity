@@ -613,10 +613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -873,8 +873,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -150}
-  m_SizeDelta: {x: 250, y: 46}
+  m_AnchoredPosition: {x: -450, y: -245}
+  m_SizeDelta: {x: 635, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294990246
 MonoBehaviour:
@@ -905,9 +905,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1.25
     m_FadeDuration: 0.08
   m_SpriteState:
-    m_HighlightedSprite: {fileID: -5348329947048962803, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
-    m_PressedSprite: {fileID: -5348329947048962803, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
-    m_SelectedSprite: {fileID: -5348329947048962803, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
+    m_HighlightedSprite: {fileID: 6591286298271653515, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
+    m_PressedSprite: {fileID: 2871477136939885114, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
+    m_SelectedSprite: {fileID: 2871477136939885114, guid: a0169d3ef9bcbb24583dd5f8d271c519, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1779,8 +1779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -150}
-  m_SizeDelta: {x: 250, y: 46}
+  m_AnchoredPosition: {x: 452, y: -245}
+  m_SizeDelta: {x: 635, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043631023
 MonoBehaviour:
@@ -1811,7 +1811,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1.25
     m_FadeDuration: 0.08
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 7635056166318038658, guid: 9e15e3692d3a2a84296e7b0a863b1873, type: 3}
+    m_HighlightedSprite: {fileID: 2043941207811785840, guid: 9e15e3692d3a2a84296e7b0a863b1873, type: 3}
     m_PressedSprite: {fileID: 7635056166318038658, guid: 9e15e3692d3a2a84296e7b0a863b1873, type: 3}
     m_SelectedSprite: {fileID: 7635056166318038658, guid: 9e15e3692d3a2a84296e7b0a863b1873, type: 3}
     m_DisabledSprite: {fileID: 0}
@@ -1910,7 +1910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -283, y: -148}
+  m_AnchoredPosition: {x: -297, y: -11}
   m_SizeDelta: {x: 620, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2070464508
@@ -1960,8 +1960,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
